@@ -1,0 +1,22 @@
+[dashboard]
+title = Julien's Misc Review Inbox
+description = Review Inbox
+foreach = (project:stackforge/solum OR project:stackforge/python-solumclient OR project:stackforge/solum-dashboard OR project:stackforge/nova-docker) status:open NOT owner:self NOT label:Workflow<=-1 label:Verified>=1,jenkins NOT label:Code-Review>=-2,self
+
+[section "Needs Feedback (Changes older than 3 days that have not been reviewed by anyone)"]
+query = NOT label:Code-Review<=2 age:3d
+
+[section "Your are a reviewer, but haven't voted in the current revision"]
+query = reviewer:self
+
+[section "Needs final +2"]
+query = (project:stackforge/solum OR project:stackforge/python-solumclient OR project:stackforge/solum-dashboard) label:Code-Review>=2
+
+[section "Passed Jenkins, No Negative Feedback"]
+query = NOT label:Code-Review>=2 NOT label:Code-Review<=-1
+
+[section "Wayward Changes (Changes with no code review in the last 2 days)"]
+query = NOT label:Code-Review<=2 age:2d
+
+[section "New items not reviewed yet"]
+query = NOT reviewer:self
