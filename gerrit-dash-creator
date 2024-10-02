@@ -51,7 +51,7 @@ def get_sections(fname):
 
 
 def gen_url(title, foreach, sections):
-    base = '/?'
+    base = '#/dashboard/?'
     base += urllib.parse.urlencode({'title': title, 'foreach': foreach})
     base += '&'
     encoded = [urllib.parse.urlencode({x['title']: x['query']}) for x in sections]
