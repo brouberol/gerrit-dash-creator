@@ -73,7 +73,6 @@ def main():
     title, foreach = get_title(opts.dash)
     sections = get_sections(opts.dash)
     url = gen_url(title, foreach, sections)
-    print("URL for %s" % title)
     print(url)
 
 
