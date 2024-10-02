@@ -23,11 +23,11 @@ def get_title(fname):
     title = ""
     foreach = ""
     for line in fileinput.input(fname):
-        m = re.match("title = (.+)", line)
+        m = re.match(r"title = (.+)", line)
         if m:
             title = m.group(1)
 
-        m = re.match("foreach = (.+)", line)
+        m = re.match(r"foreach = (.+)", line)
         if m:
             foreach = m.group(1)
     fileinput.close()
@@ -38,11 +38,11 @@ def get_sections(fname):
     sections = []
     sname = None
     for line in fileinput.input(fname):
-        m = re.match('\[section "([^"]+)', line)
+        m = re.match(r'\[section "([^"]+)', line)
         if m:
             sname = m.group(1)
         elif sname:
-            m = re.match("query = (.+)", line)
+            m = re.match(r"query = (.+)", line)
             if m:
                 query = m.group(1)
                 sections.append({'title': sname, 'query': query})
